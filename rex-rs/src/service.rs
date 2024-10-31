@@ -32,14 +32,12 @@ pub(crate) fn create_new_document(
 
     println!("Ye");
 
-    let to = std::env::current_dir()?
-        .join(relative_dir);
-
-    println!("{:?}", &to);
+    let to = std::env::current_dir()?.join(relative_dir);
 
     let to = fs::canonicalize(to)?;
 
     let to = to.join(format!("{}.tex", doc_name));
+    println!("{:?}", &to);
 
     let from = match doc_types_available.get(doc_type) {
         Some(path) => path,
