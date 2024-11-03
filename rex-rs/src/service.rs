@@ -30,14 +30,11 @@ pub(crate) fn create_new_document(
         return Ok(());
     }
 
-    println!("Ye");
-
     let to = std::env::current_dir()?.join(relative_dir);
 
     let to = fs::canonicalize(to)?;
 
     let to = to.join(format!("{}.tex", doc_name));
-    println!("{:?}", &to);
 
     let from = match doc_types_available.get(doc_type) {
         Some(path) => path,
@@ -46,8 +43,6 @@ pub(crate) fn create_new_document(
             return Ok(());
         }
     };
-
-    println!("Copying to {}", &to.to_string_lossy());
 
     let _ = fs::copy(from, to);
 
